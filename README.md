@@ -23,3 +23,12 @@ pip install requirements.txt
 ```
 
 ## Como rodar:
+
+- Coloque na pasta data/ o dataset em questão
+- Rode:
+
+```bash
+python3 run.py
+```
+
+- Veja os resultados pasta outputs/
