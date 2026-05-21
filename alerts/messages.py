@@ -9,7 +9,7 @@ class AlertMessage:
             f"📍 *Local:* {local}\n"
             f"⏰ *Período:* {periodo}\n"
             f"💧 *Intensidade:* Moderada\n\n"
-            f"Aviso: Redobre a atenção no trânsito e evite áreas com histórico de alagamento."
+            f"Aviso: Redobre a atenção no trânsito e evite áreas com histórico de alagamento."0
         )
 
     @staticmethod
