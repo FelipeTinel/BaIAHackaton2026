@@ -1,31 +1,29 @@
 import pandas as pd
 import os
-import model
+from model.predict import generate_csv_for_date
 from pipeline.risk_engine import risk_calculate
 from alerts.whatsapp import send_alert
+from traffic.simulator import simulate
 
-def run_pipeline():
-    print('Loading data...')
-    DATA = [f for f in os.listdir('data') if f.endswith('.csv')][0]
-    df = pd.read_csv(f'data/{DATA}')
-
+def run_pipeline(date_str: str):
     print('Generating predictions...')
-    predicts = model.predict(df)
+    output_path, df = generate_csv_for_date(date_str)
 
     print('Calculating risk...')
-    risks = risk_calculate(predicts)
+    df = df.rename(columns={'Previsao_Precipitacao_mm': 'precipitacao'})
+    risks = risk_calculate(df)
 
     print('Send alerts...')
     LEVEL = ['fraco', 'moderado', 'forte', 'extremo']
-    for risk in risks:
+    for _, risk in risks.iterrows():
         if LEVEL.index(risk['nivel']) >= LEVEL.index('moderado'):
-            send_alert(risk['nivel'])
+            send_alert(risk['nivel'], date_str)
 
-    print('Saving outputs...')
-    df['predicts'] = predicts
-    df.to_csv('outputs/results.csv', index=False)
+    # print('Saving outputs...')
+    # risks.to_csv('outputs/results.csv', index=False)
 
-    print('Finished.')
+    print('Running traffic_light simulation:')
+
 
 if __name__ == '__main__':
-    run_pipeline()
+    run_pipeline('2025-05-22')

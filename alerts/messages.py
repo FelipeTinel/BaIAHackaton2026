@@ -30,7 +30,7 @@ class AlertMessage:
     }
 
     @classmethod
-    def emitir(cls, nivel, periodo):
+    def send_alert(cls, nivel, periodo):
         # Busca a config
         config = cls._CONFIGS.get(nivel.lower())
         

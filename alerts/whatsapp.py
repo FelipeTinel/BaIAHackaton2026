@@ -1,19 +1,25 @@
-# Código que dispara o modelo treinado para o contato em questão
+# Código que dispara mensagem de alerta para o contato em questão
+import os
 from twilio.rest import Client
+from dotenv import load_dotenv
 from alerts.messages import AlertMessage
 
-account_sid = 'ac'
-auth_token = 'auth'
+load_dotenv()
 
-client = Client(account_sid, auth_token)
+ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+AUTH_TOKEN  = os.getenv("TWILIO_AUTH_TOKEN")
+FROM        = os.getenv("TWILIO_FROM")
+TO          = os.getenv("TWILIO_TO")
 
-niveis = ["normal", "moderado", "forte", "extremo"]
+def send_alert(level: str, date: str = 'date not defined'):
+    client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
-#for i in range(4):
-nivel_alerta = AlertMessage.emitir(niveis[3], "16:00 - 18:00")  
+    mensagem = AlertMessage.send_alert(level, date)
 
-message = client.messages.create(
-  from_='whatsapp:+14155238886',
-  body=nivel_alerta,
-  to='whatsapp:+557182372739'
-  )
+    message = client.messages.create(
+        from_=FROM,
+        body=mensagem,
+        to=TO
+    )
+    print(f"  Alerta enviado [{level.upper()}]: {mensagem}")
+    return message
