@@ -24,6 +24,10 @@ def run_pipeline(date_str: str):
 
     print('Running traffic_light simulation:')
 
+    pior_nivel = max(risks['nivel'], key=lambda x: LEVEL.index(x))
+    simulate(pior_nivel)
+    
+    print('Finished.')
 
 if __name__ == '__main__':
     run_pipeline('2025-05-22')
