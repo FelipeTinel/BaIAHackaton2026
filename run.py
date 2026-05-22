@@ -34,5 +34,5 @@ def run_pipeline(date_str: str):
     print('Finished.')
 
 if __name__ == '__main__':
-    data = input("Digite a data: ")
+    data = input("Digite a data(ex: 2025-05-22): ")
     run_pipeline(data)
