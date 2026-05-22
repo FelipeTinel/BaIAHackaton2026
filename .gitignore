@@ -223,3 +223,6 @@ data/*.csv
 # joblib
 
 model/artifacts/*.joblib
+# outputs
+
+output/*.csv
