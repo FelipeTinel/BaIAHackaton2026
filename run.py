@@ -13,13 +13,20 @@ def run_pipeline(date_str: str):
     df = df.rename(columns={'Previsao_Precipitacao_mm': 'precipitacao'})
     risks = risk_calculate(df)
 
-    print('Send alerts...')
     LEVEL = ['fraco', 'moderado', 'forte', 'extremo']
-    for _, risk in risks.iterrows():
-        if LEVEL.index(risk['nivel']) >= LEVEL.index('moderado'):
-            send_alert(risk['nivel'], date_str)
+    
+    print('Sending alerts...')
+    
+    '''
+    Código de acionamento de alertas comentado para funcionamento do modelo preditivo.
+    
+    '''
 
-    # print('Saving outputs...')
+    # for _, risk in risks.iterrows():
+    #     if LEVEL.index(risk['nivel']) >= LEVEL.index('moderado'):
+    #         send_alert(risk['nivel'], date_str)
+
+    # # print('Saving outputs...')
     # risks.to_csv('outputs/results.csv', index=False)
 
     print('Running traffic_light simulation:')
