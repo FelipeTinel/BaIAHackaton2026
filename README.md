@@ -30,8 +30,11 @@ de ocorrência de chuva alerta, através do Whatsapp, como os semáfaros irão f
 ## Considerações:
 
 Nessa primeira versão, a implementação de mensagens no Whatsapp para diferentes números de telefone não está inclusa. A base do código está focada exclusivamente
-para um número de telefone espefíco que, através de alguns testes, comprova o funcionamento dos envios.
+para um número de telefone espefíco que, através de alguns testes, comprova o funcionamento do envio.
 
+<div align="center">
+    <img src="assets/exemplo_alerta.jpeg" width="300"/>
+</div>
 </br>
 Além disso, o semáforo inteligente que altera o tempo de sinal a depender da previsão da chuva é apenas uma simulação à mostra no terminal após a execução do código.
 

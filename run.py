@@ -26,8 +26,6 @@ def run_pipeline(date_str: str):
     #     if LEVEL.index(risk['nivel']) >= LEVEL.index('moderado'):
     #         send_alert(risk['nivel'], date_str)
 
-    # # print('Saving outputs...')
-    # risks.to_csv('outputs/results.csv', index=False)
 
     print('Running traffic_light simulation:')
 
